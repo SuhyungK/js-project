@@ -46,12 +46,41 @@ function createTodoElement(item) {
     actionsEl.classList.add('actions');
 
     const editBtnEl = document.createElement('button');
-    editBtnEl.classList.add('material-icons');
+    // editBtnEl.classList.add('material-icons');
     editBtnEl.innerText = 'edit';
 
     const removeBtnEl = document.createElement('button');
-    removeBtnEl.classList.add('material-icons', 'remove-btn');
+    // removeBtnEl.classList.add('material-icons', 'remove-btn');
+    removeBtnEl.classList.add('remove-btn');
     removeBtnEl.innerText ='remove_circles';
+
+    checkboxEl.addEventListener('chage', () => {
+        complete = checkboxEl.checked;
+        if (itemEl.complete) {
+            itemEl.classList.add('complete');
+        } else {
+            itemEl.classList.remove('complete');
+        }
+    })
+
+    inputEl.addEventListener('blur', () => {
+        inputEl.setAttribute('disabled', '');
+    })
+
+    inputEl.addEventListener('input', () => {
+        item.text = inputEl.value;
+    })
+
+    editBtnEl.addEventListener('click', () => {
+        inputEl.removeAttribute('disabled');
+        console.log('왜 실행이 안 되지')
+        inputEl.focus();
+    })
+
+    removeBtnEl.addEventListener('click', () => {
+        todos = todos.filter(t => t.id !== item.id)
+        itemEl.remove();
+    })
 
     actionsEl.append(editBtnEl);
     actionsEl.append(removeBtnEl);
