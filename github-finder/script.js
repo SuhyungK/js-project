@@ -3,11 +3,15 @@ import { API } from './token.js'
 const inputEl = document.getElementById('search_bar')
 inputEl.addEventListener('keydown', (e) => searchUser(e))
 
+const loader = document.querySelector('.loader')
+
 async function searchUser(e) {
     let userInfo = null
     if (e.code == 'Enter') {
+        loader.style.display = 'block'
         getUserInfo(e.target.value)
             .then((res) => {
+                loader.style.display = 'none'
                 drawPage(res)
             })
             .catch((err) => {
