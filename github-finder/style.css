@@ -4,9 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+    min-width: 1000px;
+}
+
 #header {
     background: #447ce2;
     color: #fff;
+    padding: 10px;
 }
 
 #nav {
@@ -49,31 +54,58 @@
 
 .box {
     display: inline-block;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     color: #fff;
     border-radius: 3px;
+    margin: 3px;
 }
 
 .blue_box {
     background-color: #447ce2;   
 }
 
-.grey-box {
+.grey_box {
+    background-color: #c2c5cb;   
+}
+
+.green_box {
     background-color: #68bd8e; 
 }
 
-.turquoise-box {
+.turquoise_box {
     background-color: #79b8c8;
-}
-
-.grey-box {
-    background-color: #c2c5cb;   
 }
 
 #footer {
     background-color: gainsboro;
     text-align: center;
+}
+
+#github_info {
+    border: 2px solid red;
+    min-height: 500px;
+    display: flex;
+
+}
+
+.tmp {
+    border: 1px solid blue;
+}
+
+.loader {
+    display: none;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
