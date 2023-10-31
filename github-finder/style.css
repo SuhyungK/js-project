@@ -52,6 +52,16 @@ body {
     font-size: 25px;
 }
 
+img {
+    width: 90%;
+}
+
+.primary_btn {
+    width: 90%;
+    color: #fff;
+    border-radius: 10px;
+}
+
 .box {
     display: inline-block;
     padding-left: 20px;

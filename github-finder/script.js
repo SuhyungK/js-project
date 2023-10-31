@@ -20,20 +20,6 @@ async function searchUser(e) {
     }
 }
 
-// function drawSpinner() {
-//     const section = document.getElementById('section')
-//     const spinner = document.createElement('div')
-//     spinner.classList.add('loader')
-    
-//     section.append(spinner)
-// }
-
-// function removeSpinner() {
-//     const section = document.getElementById('section')
-//     const spinner = document.getElementsByClassName('loader')
-//     section.remove(spinner)
-// }
-
 async function getUserInfo(value) {
     // GET search -users
     const { items } = await getApi(`search/users?q=${value}`)                           
@@ -79,6 +65,15 @@ function drawPage(userInfo) {
     leftDiv.classList.add('tmp')
     rightDiv.classList.add('tmp')
 
+    // left div
+    const imgDiv = document.createElement('img')
+    imgDiv.src = userInfo.avatar_url
+
+    const viewProfileBtn = document.createElement('button')
+    viewProfileBtn.classList.add('blue_box', 'primary_btn')
+    viewProfileBtn.innerHTML = 'View Profile'
+
+    // right div
     const infoLabelDiv = document.createElement('div')
     const blueLabel = document.createElement('div')
     blueLabel.classList.add('blue_box', 'box')
@@ -97,10 +92,19 @@ function drawPage(userInfo) {
 
     // change style
     leftDiv.style.width = '30%'
+    leftDiv.style.textAlign = 'center'
+    // leftDiv.style.display = 'flex'
+    // leftDiv.style.flexDirection = 'row'
+    // leftDiv.style.justifyContent = 'center'
+    // leftDiv.style.alignItems = 'center'
+    
     rightDiv.style.width = '70%'
 
 
     // append HTML
+    leftDiv.append(imgDiv)
+    leftDiv.append(viewProfileBtn)
+
     infoLabelDiv.append(blueLabel)
     infoLabelDiv.append(greyLabel)
     infoLabelDiv.append(greenLabel)
@@ -114,22 +118,6 @@ function drawPage(userInfo) {
     section.append(infoArticle)
 }
 
-// async function getUser(value) {
-//     const headers = {
-//         Accept: 'application/vnd.github+json',
-//         Authorization: `Bearer ${token}`,
-//         "X-GitHub-Api-Version": "2022-11-28"
-//     }
-//     const api_url = `https://api.github.com/search/users?q=${value}`
-//     const response = await fetch(api_url, {
-//       method: "GET",
-//       headers: headers,
-//     });
-//     const result = await response.json();
-//     // console.log(result.items[0])
-//     return result
-// }
-
 async function getApi(params=null, url=null) {
     const api_url = url ? url : `${API.URL}${params}`
     const response = await fetch(api_url, {
@@ -137,10 +125,5 @@ async function getApi(params=null, url=null) {
       headers: API.headers,
     });
     const result = await response.json();
-    // console.log(result.items[0])
     return result
-}
-
-function getFollower(url) {
-
 }
