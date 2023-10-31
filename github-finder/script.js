@@ -1,4 +1,13 @@
-import { API } from './token.js'
+import { token } from './token.js'
+
+export const API = {
+    headers: {
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
+        "X-GitHub-Api-Version": "2022-11-28"
+    },
+    URL: 'https://api.github.com/'
+}
 
 const inputEl = document.getElementById('search_bar')
 inputEl.addEventListener('keydown', (e) => searchUser(e))
