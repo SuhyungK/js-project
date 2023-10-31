@@ -8,6 +8,10 @@ body {
     min-width: 1000px;
 }
 
+.default_border {
+    border: 1px solid #d1d7dc;
+}
+
 #header {
     background: #447ce2;
     color: #fff;
@@ -56,6 +60,16 @@ img {
     width: 90%;
 }
 
+.info_table {
+    border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info_table th, tr {
+    border: 1px solid;
+}
+
 .primary_btn {
     width: 90%;
     color: #fff;
@@ -89,6 +103,23 @@ img {
     background-color: #79b8c8;
 }
 
+.repo_div {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    height: 30px;
+    font-size: 20px;
+    padding: 20px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    margin: 10px;
+}
+
+.repo_div p {
+    color: #447ce2;
+}
+
 #footer {
     background-color: gainsboro;
     text-align: center;
@@ -119,3 +150,4 @@ img {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
