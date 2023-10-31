@@ -19,8 +19,8 @@ const section = document.getElementById('section')
 
 async function searchUser(e) {
     let userInfo = null 
-
     if (e.code == 'Enter') {
+        section.innerHTML = ''
         loader.style.display = 'block'
         getUserInfo(e.target.value)
             .then((res) => {
@@ -155,7 +155,7 @@ function drawRepo(reposList) {
         repoDiv.classList.add('default_border', 'repo_div')
         const repoTitle = document.createElement('p')
         repoTitle.innerText = name
-        repoTitle.style.width = '60%'
+        repoTitle.style.width = '50%'
         const repoLabelList = document.createElement('div')
         repoLabelList.style.display = 'flex'
         const repoStarLabel = document.createElement('div')
