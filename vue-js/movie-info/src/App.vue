@@ -1,4 +1,6 @@
 <template>
+  <Navbar />
+  <Event :text="text" />
   <h1>영화 정보</h1>
   <div v-for="(movie, i) in data" :key="i" class="item">
     <figure>
@@ -23,27 +25,29 @@
     </div>
   </div>
 
-  <div class="modal" v-if="isModal">
-    <div class="inner">
-      <h3>{{ data[selectedMovie].title }}</h3>
-      <p>영화 상세정보</p>
-      <button @:click="isModal = false">닫기</button>
-    </div>
-  </div>
+  <Modal />
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
+import Modal from "./components/Modal.vue";
+import Event from "./components/Event.vue";
 import data from "./assets/movies";
-console.log(data);
 
 export default {
   name: "App",
+  components: {
+    Navbar: Navbar,
+    Modal: Modal,
+    Event: Event,
+  },
   data() {
     return {
       isModal: false,
       selectedMovie: 0,
       data: data,
       textRed: "color: red",
+      text: "TVING 강렬한 운명의 드라마, 선재 업고 튀어!!",
     };
   },
   methods: {
