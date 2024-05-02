@@ -1,9 +1,12 @@
 <template>
   <Navbar />
   <Event :text="text" />
-  <SearchBar />
+  <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
+  <p>
+    <button @click="showAllMovie">전체보기</button>
+  </p>
   <Movies
-    :data="data"
+    :data="data_temp"
     @openModal="
       isModal = true;
       selectedMovie = $event;
@@ -40,13 +43,22 @@ export default {
       isModal: false,
       selectedMovie: 0,
       data: data,
-      textRed: "color: red",
+      data_temp: [...data], //
       text: "TVING 강렬한 운명의 드라마, 선재 업고 튀어!!",
     };
   },
   methods: {
     increaseLike(i) {
       this.data[i].like += 1;
+    },
+    searchMovie(title) {
+      // 영화 제목이 포함된 데이터를 가져옴
+      this.data_temp = this.data.filter((movie) => {
+        return movie.title.includes(title);
+      });
+    },
+    showAllMovie() {
+      this.data_temp = [...this.data];
     },
   },
 };

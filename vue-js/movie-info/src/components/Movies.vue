@@ -6,7 +6,7 @@
         <img :src="`${movie.imgUrl}`" :alt="movie.title" />
       </figure>
       <div class="info">
-        <h3 class="bg-yellow" :style="textRed">{{ movie.title }}</h3>
+        <h3 class="bg-yellow">{{ movie.title }}</h3>
         <p>개봉: {{ movie.year }}</p>
         <p>장르: {{ movie.category }}</p>
         <!-- <button @:click="increaseLike(i)">좋아요</button> -->

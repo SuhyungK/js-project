@@ -3,7 +3,11 @@
     <!-- <input type="search" v-model="inputText" placeholder="검색어 입력" /> -->
     <input
       type="search"
-      @input="inputText = $event.target.value"
+      @change="
+        $emit('searchMovie', $event.target.value);
+        inputText = $event.target.value;
+        $event.target.value = '';
+      "
       placeholder="검색어 입력"
     />
     <button>검색</button>
@@ -19,11 +23,18 @@ export default {
       inputText: "",
     };
   },
+  props: {
+    data: Array,
+  },
   watch: {
     inputText(name) {
       // 입력한 영화 제목이 데이터에 있는지 확인
-      if (name !== "노량") {
-        alert("해당하는 영화가 없습니다");
+      const findName = this.data.filter((movie) => {
+        return movie.title.includes(name);
+      });
+
+      if (findName.length == 0) {
+        alert("해당 하는 자료가 없습니다");
       }
     },
   },
