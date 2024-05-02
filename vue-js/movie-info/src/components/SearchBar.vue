@@ -11,8 +11,8 @@
       placeholder="검색어 입력"
     />
     <button>검색</button>
+    <p>{{ inputText }}</p>
   </div>
-  <p>{{ inputText }}</p>
 </template>
 
 <script>

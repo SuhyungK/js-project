@@ -1,24 +1,26 @@
 <template>
-  <Navbar />
-  <Event :text="text" />
-  <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
-  <p>
-    <button @click="showAllMovie">전체보기</button>
-  </p>
-  <Movies
-    :data="data_temp"
-    @openModal="
-      isModal = true;
-      selectedMovie = $event;
-    "
-    @increaseLike="data[$event].like++"
-  />
-  <Modal
-    :data="data"
-    :isModal="isModal"
-    :selectedMovie="selectedMovie"
-    @closeModal="isModal = false"
-  />
+  <div>
+    <Navbar />
+    <Event :text="text" />
+    <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
+    <p>
+      <button @click="showAllMovie">전체보기</button>
+    </p>
+    <Movies
+      :data="data_temp"
+      @openModal="
+        isModal = true;
+        selectedMovie = $event;
+      "
+      @increaseLike="increaseLike($event)"
+    />
+    <Modal
+      :data="data"
+      :isModal="isModal"
+      :selectedMovie="selectedMovie"
+      @closeModal="isModal = false"
+    />
+  </div>
 </template>
 
 <script>
@@ -43,7 +45,7 @@ export default {
       isModal: false,
       selectedMovie: 0,
       data: data,
-      data_temp: [...data], //
+      data_temp: [...data],
       text: "TVING 강렬한 운명의 드라마, 선재 업고 튀어!!",
     };
   },
