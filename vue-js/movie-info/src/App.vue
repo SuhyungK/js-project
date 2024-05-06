@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <Event :text="text" />
+    <Event :text="text[eventTextCurNum]" />
     <SearchBar :data="data_temp" @searchMovie="searchMovie($event)" />
     <p>
       <button @click="showAllMovie">전체보기</button>
@@ -46,12 +46,23 @@ export default {
       selectedMovie: 0,
       data: data,
       data_temp: [...data],
-      text: "TVING 강렬한 운명의 드라마, 선재 업고 튀어!!",
+      text: [
+        "TVING 강렬한 운명의 드라마, 선재 업고 튀어!!",
+        "밀어낼수록 더 가까이 다가가는 '솔친자' 류선재!  ",
+        "청량 + 풋풋 + 싱그러움 가득한 솔선재",
+      ],
+      eventTextCurNum: 0,
+      interval: null,
     };
   },
   methods: {
-    increaseLike(i) {
-      this.data[i].like += 1;
+    increaseLike(id) {
+      // this.data[i].like += 1;
+      this.data.find((movie) => {
+        if (movie.id === id) {
+          movie.like += 1;
+        }
+      });
     },
     searchMovie(title) {
       // 영화 제목이 포함된 데이터를 가져옴
@@ -62,6 +73,14 @@ export default {
     showAllMovie() {
       this.data_temp = [...this.data];
     },
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      this.eventTextCurNum = (this.eventTextCurNum + 1) % this.text.length;
+    }, 3000);
+  },
+  unmounted() {
+    clearInterval(this.interval); // 인터벌 해제
   },
 };
 </script>
