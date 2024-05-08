@@ -6,7 +6,10 @@
         <img :src="pjt.imgUrl" :alt="pjt.id" />
         <h4>{{ pjt.title }}</h4>
         <p>{{ pjt.desc }}</p>
-        <router-link to="/detail/1">상세보기</router-link>
+        <small class="mb-3 text-secondary">{{ pjt.skills }}</small>
+        <router-link class="btn btn-primary" :to="'/detail/' + pjt.id"
+          >상세보기</router-link
+        >
       </li>
     </ul>
   </section>
