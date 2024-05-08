@@ -2,18 +2,20 @@
   <section id="portfolio" class="container">
     <h1>Portfolio</h1>
     <ul class="list row">
-      <li class="col-md-4 border" v-for="pjt in data">
+      <li class="col-md-4" v-for="pjt in data">
         <img :src="pjt.imgUrl" :alt="pjt.id" />
         <h4>{{ pjt.title }}</h4>
         <p>{{ pjt.desc }}</p>
+        <router-link to="/detail/1">상세보기</router-link>
       </li>
     </ul>
   </section>
 </template>
 
 <script setup>
-import data from "../assets/portfolio";
-console.log(data);
+const props = defineProps({
+  data: Array,
+});
 </script>
 
 <style lang="scss">
