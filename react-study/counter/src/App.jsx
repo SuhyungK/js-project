@@ -1,7 +1,7 @@
 import "./App.css";
 import Viewer from "./components/Viewer";
 import Controller from "./components/Controller";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,6 +9,10 @@ function App() {
   const onClickButton = (value) => {
     setCount(count + value);
   };
+
+  useEffect(() => {
+    console.log(`count : ${count}`);
+  }, [count]);
 
   return (
     <div className="app">
