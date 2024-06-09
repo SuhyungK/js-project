@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
 import Exam from "./components/Exam";
-import { useRef, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 
 const mockData = [
   {
@@ -26,47 +26,64 @@ const mockData = [
   },
 ];
 
+function todoReducer(state, action) {
+  switch (action.type) {
+    case "CREATE": {
+      return [action.data, ...state];
+    }
+
+    case "UPDATE": {
+      return state.map((item) =>
+        item.id === action.targetId ? { ...item, isDone: !item.isDone } : item
+      );
+    }
+
+    case "DELETE": {
+      return state.filter((item) => item.id !== action.targetId);
+    }
+
+    default:
+      state;
+  }
+}
+
 function App() {
-  const [todos, setTodos] = useState(mockData);
+  const [todos, dispatch] = useReducer(todoReducer, mockData);
   const idRef = useRef(mockData.length);
 
   const onCreate = (content) => {
-    const newTodo = {
-      id: idRef.current++,
-      content,
-      date: new Date().getTime(),
-      isDone: false,
-    };
-
-    setTodos([newTodo, ...todos]);
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: idRef.current++,
+        content,
+        date: new Date().getTime(),
+        isDone: false,
+      },
+    });
   };
 
   const onUpdate = (targetId) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === targetId) {
-          // 모든 todo를 순회하면서 targetId와 같은 id를 가지는 todo를 찾은 경우
-          return {
-            ...todo,
-            isDone: !todo.isDone,
-          };
-        }
-        return todo;
-      })
-    );
+    dispatch({
+      type: "UPDATE",
+      targetId,
+    });
   };
 
   const onDelete = (targetId) => {
-    console.log(todos);
-    setTodos(todos.filter((todo) => todo.id !== targetId));
+    // setTodos(todos.filter((todo) => todo.id !== targetId));
+
+    dispatch({
+      type: "DELETE",
+      targetId,
+    });
   };
 
   return (
     <div className="App">
-      <Exam />
-      {/* <Header />
+      <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
