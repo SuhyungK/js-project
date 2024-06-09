@@ -40,11 +40,31 @@ function App() {
     setTodos([newTodo, ...todos]);
   };
 
+  const onUpdate = (targetId) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === targetId) {
+          // 모든 todo를 순회하면서 targetId와 같은 id를 가지는 todo를 찾은 경우
+          return {
+            ...todo,
+            isDone: !todo.isDone,
+          };
+        }
+        return todo;
+      })
+    );
+  };
+
+  const onDelete = (targetId) => {
+    console.log(todos);
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
+
   return (
     <div className="App">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
