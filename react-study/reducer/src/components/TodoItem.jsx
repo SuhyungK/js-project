@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./TodoItem.css";
 
 const TodoItem = ({ id, content, date, isDone, onUpdate, onDelete }) => {
@@ -21,4 +22,19 @@ const TodoItem = ({ id, content, date, isDone, onUpdate, onDelete }) => {
   );
 };
 
-export default TodoItem;
+export default memo(TodoItem, (prevProps, nextProps) => {
+  // 함수의 반환값에 따라서 props가 바뀌었는지 아니었는지를 판단한다
+  // true -> props 바뀌지 않았다고 판단하여 재렌더링 x
+  // false -> props 바뀌었다고 판단해서 재렌더링 o
+
+  if (
+    prevProps.id !== nextProps.id ||
+    prevProps.content !== nextProps.content ||
+    prevProps.date !== nextProps.date ||
+    prevProps.isDone !== nextProps.isDone
+  ) {
+    return false;
+  }
+
+  return true;
+});
