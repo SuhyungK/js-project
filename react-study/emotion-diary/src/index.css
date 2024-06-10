@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "MaruBuri";
+  src: url("/MaruBuri-SemiBold.otf");
+}
+
+body * {
+  font-family: "MaruBuri";
+}
