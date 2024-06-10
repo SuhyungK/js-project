@@ -3,6 +3,25 @@
   src: url("/MaruBuri-SemiBold.otf");
 }
 
+html,
+body {
+  margin: 0;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+}
+
 body * {
   font-family: "MaruBuri";
+}
+
+#root {
+  /* 최대 600px 이므로 부모 요소가 600px보다 작은 경우는 거기에 맞추고 큰 경우는 600px 를 넘어가지 않음 */
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  /* 최소 뷰포트의 최대 높이(100vh) 만큼은 유지하고, 부모 요소가 100vh 보다 크다면 거기에 맞춤*/
+  min-height: 100vh;
+  height: 100%;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
 }
