@@ -1,14 +1,15 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import "./TodoItem.css";
+import { TodoDispatchContext } from "../App";
 
-const TodoItem = ({ id, content, date, isDone, onUpdate, onDelete }) => {
+const TodoItem = ({ id, content, date, isDone }) => {
+  const { onUpdate, onDelete } = useContext(TodoDispatchContext);
   const onChangeCheckbox = () => {
     // 체크박스를 클릭했을 때 발생하는 이벤트
     onUpdate(id);
   };
 
   const onClickDelete = () => {
-    console.log("???");
     onDelete(id);
   };
 
@@ -22,19 +23,21 @@ const TodoItem = ({ id, content, date, isDone, onUpdate, onDelete }) => {
   );
 };
 
-export default memo(TodoItem, (prevProps, nextProps) => {
-  // 함수의 반환값에 따라서 props가 바뀌었는지 아니었는지를 판단한다
-  // true -> props 바뀌지 않았다고 판단하여 재렌더링 x
-  // false -> props 바뀌었다고 판단해서 재렌더링 o
+// export default memo(TodoItem, (prevProps, nextProps) => {
+//   // 함수의 반환값에 따라서 props가 바뀌었는지 아니었는지를 판단한다
+//   // true -> props 바뀌지 않았다고 판단하여 재렌더링 x
+//   // false -> props 바뀌었다고 판단해서 재렌더링 o
 
-  if (
-    prevProps.id !== nextProps.id ||
-    prevProps.content !== nextProps.content ||
-    prevProps.date !== nextProps.date ||
-    prevProps.isDone !== nextProps.isDone
-  ) {
-    return false;
-  }
+//   if (
+//     prevProps.id !== nextProps.id ||
+//     prevProps.content !== nextProps.content ||
+//     prevProps.date !== nextProps.date ||
+//     prevProps.isDone !== nextProps.isDone
+//   ) {
+//     return false;
+//   }
 
-  return true;
-});
+//   return true;
+// });
+
+export default memo(TodoItem);
