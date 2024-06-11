@@ -5,6 +5,9 @@ import Diary from "./pages/Diary";
 import NotFound from "./pages/NotFound";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
+import Header from "./components/Header/Header";
+import Button from "./components/Button/Button";
+
 import emotion1 from "./assets/emotion1.png";
 import emotion2 from "./assets/emotion2.png";
 import emotion3 from "./assets/emotion3.png";
@@ -19,13 +22,14 @@ function App() {
   };
   return (
     <>
-      <div>
-        <img src={"/emotion1.png"} />
-        <img src={"/emotion2.png"} />
-        <img src={"/emotion3.png"} />
-        <img src={"/emotion4.png"} />
-        <img src={"/emotion5.png"} />
-      </div>
+      <Header
+        title={"header"}
+        leftChild={<Button text={"<"} />}
+        rightChild={<Button text={">"} />}
+      />
+      <Button text={"버튼"} type={"DEFAULT"} />
+      <Button text={"버튼"} type={"POSITIVE"} />
+      <Button text={"버튼"} type={"NEGATIVE"} />
       <div>
         <img src={emotion1} />
         <img src={emotion2} />
