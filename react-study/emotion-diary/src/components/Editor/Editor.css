@@ -1,0 +1,28 @@
+.Editor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Editor .today-date > input {
+  border: none;
+  background-color: rgb(236, 236, 236);
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.Editor .today-diary textarea {
+  border: none;
+  background-color: rgb(236, 236, 236);
+  border-radius: 5px;
+  width: 100%;
+  min-height: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.Editor .editor-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
