@@ -12,15 +12,21 @@ import Edit from "./pages/Edit";
 const mockData = [
   {
     id: 1,
-    emtionId: 3,
+    emotionId: 1,
     content: "1번 일기의 내용입니다.",
-    date: new Date().getTime(),
+    createdDate: new Date("2024-06-04").getTime(),
   },
   {
     id: 2,
-    emtionId: 5,
+    emotionId: 2,
     content: "2번 일기의 내용입니다.",
-    date: new Date().getTime(),
+    createdDate: new Date("2024-06-12").getTime(),
+  },
+  {
+    id: 3,
+    emotionId: 3,
+    content: "3번 일기의 내용입니다.",
+    createdDate: new Date("2024-05-11").getTime(),
   },
 ];
 
@@ -39,8 +45,8 @@ function reducer(state, action) {
   }
 }
 
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
@@ -70,7 +76,7 @@ function App() {
     });
   };
 
-  const onDelete = ({ id }) => {
+  const onDelete = (id) => {
     dispatch({
       type: "DELETE",
       id,
