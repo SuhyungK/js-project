@@ -52,7 +52,7 @@ function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(mockData.length);
 
-  const onCreate = ({ createdDate, emotionId, content }) => {
+  const onCreate = (createdDate, emotionId, content) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -64,7 +64,7 @@ function App() {
     });
   };
 
-  const onUpdate = ({ id, createdDate, emotionId, content }) => {
+  const onUpdate = (id, createdDate, emotionId, content) => {
     dispatch({
       type: "UPDATE",
       data: {

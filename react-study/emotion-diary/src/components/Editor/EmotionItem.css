@@ -1,10 +1,21 @@
 .EmotionItem {
-  display: flex;
-  justify-content: space-around;
-  height: 110px;
+  background-color: rgb(236, 236, 236);
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.EmotionItem .emotion-section {
+.EmotionItem .emotion-img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.EmotionItem .emotion-name {
+  font-size: 14px;
+}
+
+/* .EmotionItem .emotion-section {
   width: 100px;
   height: 100%;
   display: flex;
@@ -15,37 +26,29 @@
   background-color: rgb(236, 236, 236);
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-.EmotionItem .emotion-section-1:hover {
+.EmotionItem-on-1 {
   background-color: rgb(100, 201, 100);
   color: white;
 }
 
-.EmotionItem .emotion-section-2:hover {
+.EmotionItem-on-2 {
   background-color: rgb(157, 215, 114);
   color: white;
 }
 
-.EmotionItem .emotion-section-3:hover {
+.EmotionItem-on-3 {
   background-color: rgb(253, 206, 23);
   color: white;
 }
 
-.EmotionItem .emotion-section-4:hover {
+.EmotionItem-on-4 {
   background-color: rgb(253, 132, 70);
   color: white;
 }
 
-.EmotionItem .emotion-section-5:hover {
+.EmotionItem-on-5 {
   background-color: rgb(253, 86, 95);
   color: white;
-}
-
-.EmotionItem .emotion-section > img {
-  width: 30%;
-}
-
-.EmotionItem .emotion-section > h5 {
-  margin: 0;
 }
