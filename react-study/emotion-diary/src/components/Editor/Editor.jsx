@@ -32,12 +32,6 @@ const Editor = ({ initData, onSubmit }) => {
     onSubmit(input);
   };
 
-  const onKeyDownEnter = (e) => {
-    if (e.keyCode === 13) {
-      onClickSubmitButton();
-    }
-  };
-
   useEffect(() => {
     if (initData) {
       setInput({
@@ -86,7 +80,6 @@ const Editor = ({ initData, onSubmit }) => {
           placeholder="오늘은 어땠나요?"
           onChange={onChangeInput}
           value={input.content}
-          onKeyDown={onKeyDownEnter}
         ></textarea>
       </section>
       <section className="editor-footer">
