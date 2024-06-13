@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Editor.css";
 import EmotionItem from "./EmotionItem";
 import Button from "../Button/Button";
@@ -29,7 +29,7 @@ const emotionList = [
 
 const getStringedDate = (targetDate) => {
   let year = targetDate.getFullYear();
-  let month = targetDate.getMonth();
+  let month = targetDate.getMonth() + 1;
   let date = targetDate.getDate();
 
   if (month < 10) {
@@ -43,7 +43,7 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 };
 
-const Editor = ({ onSubmit }) => {
+const Editor = ({ initData, onSubmit }) => {
   const [input, setInput] = useState({
     createdDate: new Date(),
     emotionId: 1,
@@ -69,6 +69,21 @@ const Editor = ({ onSubmit }) => {
     onSubmit(input);
   };
 
+  const onKeyDownEnter = (e) => {
+    if (e.keyCode === 13) {
+      onClickSubmitButton();
+    }
+  };
+
+  useEffect(() => {
+    if (initData) {
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)),
+      });
+    }
+  }, [initData]);
+
   return (
     <div className="Editor">
       <section className="date-section">
@@ -76,7 +91,7 @@ const Editor = ({ onSubmit }) => {
         <input
           type="date"
           name="createdDate"
-          value={getStringedDate(new Date())}
+          value={getStringedDate(input.createdDate)}
           onChange={onChangeInput}
         />
       </section>
@@ -107,6 +122,8 @@ const Editor = ({ onSubmit }) => {
           id="content"
           placeholder="오늘은 어땠나요?"
           onChange={onChangeInput}
+          value={input.content}
+          onKeyDown={onKeyDownEnter}
         ></textarea>
       </section>
       <section className="editor-footer">
