@@ -4,22 +4,7 @@ import EmotionItem from "./EmotionItem";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import emotionList from "../../util/constant";
-
-const getStringedDate = (targetDate) => {
-  let year = targetDate.getFullYear();
-  let month = targetDate.getMonth() + 1;
-  let date = targetDate.getDate();
-
-  if (month < 10) {
-    month = `0${month}`;
-  }
-
-  if (date < 10) {
-    date = `0${date}`;
-  }
-
-  return `${year}-${month}-${date}`;
-};
+import getStringedDate from "../../util/get-stringed-date";
 
 const Editor = ({ initData, onSubmit }) => {
   const [input, setInput] = useState({
