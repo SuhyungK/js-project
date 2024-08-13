@@ -1,12 +1,18 @@
+import { Component } from 'react';
 import './App.css';
-import Say from './components/Say';
+import ScrollBox from './components/ScrollBox';
 
-function App() {
-  return (
-    <div>
-      <Say />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <ScrollBox ref={(ref) => (this.scrollBox = ref)} />
+        <button onClick={() => this.scrollBox.scrollToBottom()}>
+          맨 밑으로ㅜ
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
