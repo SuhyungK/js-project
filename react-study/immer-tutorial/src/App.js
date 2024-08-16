@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import React, { useCallback, useRef, useState } from "react";
 
 const App = () => {
@@ -12,16 +13,14 @@ const App = () => {
     uselessValue: null,
   });
 
-  const onChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setForm({
-        ...form,
-        [name]: [value],
-      });
-    },
-    [form]
-  );
+  const onChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setForm(
+      produce((draft) => {
+        draft[name] = value;
+      })
+    );
+  }, []);
 
   const onSubmit = useCallback(
     (e) => {
@@ -32,10 +31,11 @@ const App = () => {
         username: form.username,
       };
 
-      setData({
-        ...data,
-        array: data.array.concat(info),
-      });
+      setData(
+        produce((draft) => {
+          draft.array.push(info);
+        })
+      );
 
       setForm({
         name: "",
@@ -44,14 +44,18 @@ const App = () => {
 
       nextId.current += 1;
     },
-    [form, data]
+    [form]
   );
 
   const onRemove = (id) => {
-    setData({
-      ...data,
-      array: data.array.filter((info) => info.id !== id),
-    });
+    setData(
+      produce(data, (draft) =>
+        draft.array.splice(
+          draft.array.findIndex((info) => info.id === id),
+          1
+        )
+      )
+    );
   };
 
   return (
